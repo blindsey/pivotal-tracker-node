@@ -1,0 +1,14 @@
+{
+  "name": "pivotal-tracker",
+  "version": "0.0.1",
+  "description": "Pivotal Tracker API for node.js",
+  "main": "index.js",
+  "keywords": [ "pivotal", "tracker", "api" ],
+  "repository" : {
+    "type" : "git",
+    "url" : "git@gitub.com:blindsey/pivotal-tracker.git"
+  },
+  "dependencies" : {
+    "libxmljs" : "0.4.2"
+  }
+}
