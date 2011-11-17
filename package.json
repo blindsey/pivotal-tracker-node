@@ -9,6 +9,6 @@
     "url" : "git@gitub.com:blindsey/pivotal-tracker.git"
   },
   "dependencies" : {
-    "libxmljs" : "0.4.2"
+    "xml2json" : "0.2.3"
   }
 }
