@@ -1,5 +1,5 @@
 var http = require( 'http' ),
-    xml = require( 'libxmljs' );
+    parser = require( 'xml2json' );
 
 var token = '';
 
@@ -9,21 +9,23 @@ module.exports = function( _token ) {
 };
 
 exports.projects = function( callback ) {
-  var client = http.createClient( 80, 'www.pivotaltracker.com' );
-  var request = client.request( 'GET', '/services/v3/projects', {
-    'host' : 'www.pivotaltracker.com',
+  var options = {
+    host : 'www.pivotaltracker.com',
+    port : 80,
+    path : '/services/v3/projects',
+    method : 'GET',
     'X-TrackerToken' : token
-  } );
+  };
 
-  request.on( 'response', function( response ) {
-    var body = '';
+  var request = http.request( options, function( response ) {
     response.on( 'data', function( chunk ) {
       body += chunk;
     } );
 
-    response.end( 'end', function() {
-      var doc = xml.parseXmlString( body );
-      callback( doc );
+    response.on( 'end', function() {
+      var json = parser.toJson( body );
+      console.log( json );
+      callback( json );
     } );
   } );
 };
